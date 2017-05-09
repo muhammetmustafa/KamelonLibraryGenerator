@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<codes>
+   <code id="bk101">
+      <namespace></namespace>
+      <method> public class $Dto : EntityBaseDto<long>
+	       {
+		 {0}
+	       }</method>
+      <value></value>
+      <description>Default dto template.</description>
+   </code>
+   <code id="bk102">
+      <namespace>using LDC.Model.Dto.EntityDtos.$;using LDC.Model.Entity.$;</namespace>
+      <method>public static class $Extensions 
+	{ 
+	public static $ ToEntity(this $Dto dto, $ entityToAssign = null) { var entity = entityToAssign ?? new  $().AssignBAseValuesToEntity(dto);
+	    {0}
+            return entity;
+        }
+        public static $Dto ToDto(this $ entity)
+        {
+            var dto = new $Dto().AssignBAseValuesToEntity(entity);
+	    {0}
+            return dto;
+        }
+    }</method>
+      <value></value>
+      <description>Default extension template.</description>
+   </code>
+   <code id="bk103">
+      <namespace></namespace>
+      <method>public interface I$Repository : IRepository<$>
+{
+	
+}
+
+public class $Repository : RepositoryBase, I$Repository
+{
+
+}</method>
+      <value></value>
+      <description>Default repository template.</description>
+   </code>
+   <code id="bk104">
+      <namespace></namespace>
+      <method> public interface I$Service : IService
+    {
+        [ServiceAuthorization(ServiceOperationType.Save, Description = "")]
+        DataResult<long> Save($Dto dto);
+        [ServiceAuthorization(ServiceOperationType.Update, Description = "")]
+        DataResult<bool> Update($Dto dto);
+        [ServiceAuthorization(ServiceOperationType.Delete, Description = "")]
+        DataResult<bool> Delete(long id);
+        [ServiceAuthorization(ServiceOperationType.Read, Description = "")]
+        DataResult<List<$Dto>> GetActives();
+        [ServiceAuthorization(ServiceOperationType.Read, Description = "")]
+        DataResult<$Dto> GetById(long id);
+    }
+
+ public class $Service : ServiceBase, I$Service
+    {
+        private readonly I$Repository _#Repository;
+
+        public ComAviagreementService(I$Repository #Repository)
+        {
+            _$Repository = #Repository;
+        }
+
+        public DataResult<long> Save($Dto dto)
+        {
+            var entity = dto.ToEntity();
+            _#Repository.Save(entity);
+            return entity.Id > 0 ? entity.Id.ToSuccessResult() : entity.Id.ToFailureResult("Error");
+        }
+
+        public DataResult<bool> Update($Dto dto)
+        {
+            var currentEntity = _#Repository.Get(dto.Id);
+            if (currentEntity == null) return false.ToFailureResult("Not Found !");
+            var entity = dto.ToEntity(currentEntity);
+            _#Repository.Update(entity);
+            return true.ToSuccessResult();
+        }
+
+        public DataResult<bool> Delete(long id)
+        {
+            var entity = _#Repository.Get(id);
+            if (entity == null) return false.ToFailureResult("delete error.");
+            return _#Repository.DeleteLogically(entity).ToSuccessResult();
+        }
+
+        public DataResult<List<$Dto>> GetActives()
+        {
+            return _#Repository.GetActives().Select(p => p.ToDto()).ToList().ToSuccessResult();
+        }
+
+        public DataResult<List<$Dto>> GetActives(bool isvip)
+        {
+            return _#Repository.GetActives(isvip).Select(p => p.ToDto()).ToList().ToSuccessResult();
+        }
+
+        public DataResult<$Dto> GetById(long id)
+        {
+            var entity = _#Repository.Get(id);
+            if (entity == null) false.ToFailureResult("Not Found!");
+            return entity.ToDto().ToSuccessResult();
+        }
+    }</method>
+      <value></value>
+      <description>Default service template.</description>
+   </code>
+</codes>
