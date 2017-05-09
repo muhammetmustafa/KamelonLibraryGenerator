@@ -77,7 +77,7 @@ namespace LDC.Generator.Kamelon.Utility
 
             var retVal = dtomembers.Where(dtomember => !dtomember.Key.Contains("Id"))
                 .Aggregate(string.Empty, (current, dtomember) => 
-                $"current entity.{dtomember.Key} = dto.{entitymembers.FirstOrDefault(p => p.Key.Contains(dtomember.Key)).Key};\n"
+                $"entity.{dtomember.Key} = dto.{entitymembers.FirstOrDefault(p => p.Key.Contains(dtomember.Key)).Key};\n"
             );
 
             code = code.Replace("{ToEntity}", retVal);
