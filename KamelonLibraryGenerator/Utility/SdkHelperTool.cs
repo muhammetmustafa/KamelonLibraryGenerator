@@ -6,7 +6,6 @@ using System.Linq;
 using EnvDTE;
 using EnvDTE100;
 using EnvDTE80;
-using LDC.Generator.Kamelon.Extensions;
 using LDC.Generator.Kamelon.Results;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;

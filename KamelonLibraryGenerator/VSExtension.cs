@@ -6,7 +6,6 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using LDC.Generator.Kamelon.Extensions;
 using LDC.Generator.Kamelon.Results;
 using LDC.Generator.Kamelon.Utility;
 using LDC.Generator.Kamelon.VSExtension.Utility;

@@ -178,7 +178,7 @@ namespace LDC.Generator.Kamelon.Utility
                 {
                     var _0 = member.Key.Replace("#", "");
 
-                    return $"current_{_0}Repository = {_0}Repository;";
+                    return $"{current}_{_0}Repository = {_0}Repository;";
                 });
         }
 

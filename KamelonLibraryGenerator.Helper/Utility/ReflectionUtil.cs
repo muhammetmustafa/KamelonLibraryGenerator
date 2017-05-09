@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace LDC.Generator.Kamelon.Extensions
+namespace LDC.Generator.Kamelon.Utility
 {
     public enum FieldStatus
     {
